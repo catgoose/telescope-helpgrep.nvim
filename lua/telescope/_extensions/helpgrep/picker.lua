@@ -2,11 +2,11 @@ local builtin = require("telescope.builtin")
 
 local Picker = {}
 
-local function get_docs_dirs()
+local function get_docs_dirs(opts)
 	local paths = vim.api.nvim_get_option("runtimepath")
 	paths = vim.split(paths, ",")
 	for i, path in pairs(paths) do
-		if path == vim.fn.stdpath("state") .. "/lazy/readme" then
+		if opts.ignore_paths and vim.tbl_contains(opts.ignore_paths, path) then
 			table.remove(paths, i)
 		else
 			paths[i] = path .. "/doc"
@@ -16,9 +16,10 @@ local function get_docs_dirs()
 end
 
 function Picker.helpgrep()
-	local dirs = get_docs_dirs()
+	local opts = require("telescope._extensions.helpgrep.config").opts
+	local dirs = get_docs_dirs(opts)
 	builtin.live_grep({
-		prompt_title = "Helpgrep",
+		prompt_title = "Help Grep",
 		search_dirs = dirs,
 	})
 end

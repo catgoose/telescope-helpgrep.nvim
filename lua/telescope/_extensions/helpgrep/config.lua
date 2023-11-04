@@ -1,11 +1,13 @@
-local HelpGrep = {}
+local Config = {}
 
-HelpGrep.opts = {}
-local defaults = {}
+Config.opts = {}
+Config.defaults = {
+	ignore_paths = {},
+}
 
-function HelpGrep.setup(opts)
+function Config.setup(opts)
 	opts = opts or {}
-	HelpGrep.opts = vim.tbl_deep_extend("force", defaults, opts)
+	Config.opts = vim.tbl_deep_extend("force", Config.defaults, opts)
 end
 
-return HelpGrep
+return Config
