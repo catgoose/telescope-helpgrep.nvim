@@ -3,9 +3,10 @@
 <!--toc:start-->
 
 - [Telescope helpgrep](#telescope-helpgrep)
-  - [Examples](#examples)
+  - [Using help](#using-help)
   - [Alternative](#alternative)
-  - [Usage](#usage) - [Setup](#setup)
+  - [Usage](#usage)
+  - [Setup](#setup)
   <!--toc:end-->
 
 Telescope extension that uses Telescope live_grep to grep through help files
@@ -33,7 +34,7 @@ Searching for help the help topic: `vim.api.nvim_open_win`:
 ## Alternative
 
 Of course you can use the built in `helpgrep`, but I wanted something more
-"Telescopic" rather than filter through quickfix.
+"Telescopic" rather than having to filter through quickfix.
 
 ## Usage
 
@@ -41,7 +42,7 @@ Of course you can use the built in `helpgrep`, but I wanted something more
 Telescope helpgrep
 ```
 
-### Setup
+## Setup
 
 In telescope setup:
 
@@ -63,4 +64,4 @@ require('telescope').load_extension('helpgrep')
 ```
 
 No paths are ignored by default, but if you use `lazy.nvim` it is recommended
-to add `vim.fn.stdpath("state") .. "/lazy/readme"` the `ignore_paths` table
+to add `vim.fn.stdpath("state") .. "/lazy/readme"` to the `ignore_paths` table
