@@ -22,6 +22,8 @@ function M.picker()
 		prompt_title = "Help Grep",
 		search_dirs = dirs,
     glob_pattern = "*.txt",
+    disable_coordinates = true,
+    path_display = { "tail", },
 	})
 end
 
