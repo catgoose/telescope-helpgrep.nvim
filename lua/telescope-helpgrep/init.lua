@@ -21,6 +21,7 @@ function M.picker()
 	builtin.live_grep({
 		prompt_title = "Help Grep",
 		search_dirs = dirs,
+    glob_pattern = "*.txt",
 	})
 end
 
