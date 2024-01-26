@@ -4,12 +4,12 @@ if not has_telescope then
 	error("This extension requires 'telescope.nvim'. (https://github.com/nvim-telescope/telescope.nvim)")
 end
 
-local config = require("telescope._extensions.helpgrep.config")
-local picker = require("telescope._extensions.helpgrep.picker")
+local helpgrep = require("telescope-helpgrep")
+local config = require("telescope-helpgrep.config")
 
 return telescope.register_extension({
 	setup = config.setup,
 	exports = {
-		helpgrep = picker.helpgrep,
+		helpgrep = helpgrep.picker,
 	},
 })
