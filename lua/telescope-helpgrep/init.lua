@@ -1,6 +1,8 @@
 local builtin = require("telescope.builtin")
+local config = require("telescope-helpgrep.config")
+local mappings = require("telescope-helpgrep.mappings")
 
-local Picker = {}
+local M = {}
 
 local function get_docs_dirs(opts)
 	local paths = vim.api.nvim_get_option("runtimepath")
@@ -15,13 +17,16 @@ local function get_docs_dirs(opts)
 	return paths
 end
 
-function Picker.helpgrep()
-	local opts = require("telescope._extensions.helpgrep.config").opts
-	local dirs = get_docs_dirs(opts)
+function M.picker()
+	local dirs = get_docs_dirs(config.opts)
 	builtin.live_grep({
 		prompt_title = "Help Grep",
 		search_dirs = dirs,
+    glob_pattern = "*.txt",
+    disable_coordinates = true,
+    path_display = { "tail", },
+    attach_mappings = mappings.open_help_buf,
 	})
 end
 
-return Picker
+return M
