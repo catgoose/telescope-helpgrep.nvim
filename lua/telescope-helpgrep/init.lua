@@ -1,5 +1,6 @@
 local builtin = require("telescope.builtin")
 local config = require("telescope-helpgrep.config")
+local mappings = require("telescope-helpgrep.mappings")
 
 local M = {}
 
@@ -24,6 +25,7 @@ function M.picker()
     glob_pattern = "*.txt",
     disable_coordinates = true,
     path_display = { "tail", },
+    attach_mappings = mappings.open_help_buf,
 	})
 end
 
