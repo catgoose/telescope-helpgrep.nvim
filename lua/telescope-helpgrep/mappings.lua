@@ -19,6 +19,7 @@ function M.open_help_buf(prompt_bufnr, map)
       vim.api.nvim_buf_set_option(bufHdl, 'tabstop', 8)
       vim.api.nvim_buf_set_option(bufHdl, 'buflisted', false)
       vim.api.nvim_buf_set_option(bufHdl, 'modifiable', false)
+      vim.api.nvim_buf_set_option(bufHdl, 'buftype', 'help')
 
       vim.api.nvim_win_set_option(winHdl, "foldmethod", "manual")
       vim.api.nvim_win_set_option(winHdl, "arabic", false)
