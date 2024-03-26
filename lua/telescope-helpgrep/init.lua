@@ -4,7 +4,7 @@ local mappings = require("telescope-helpgrep.mappings")
 
 local M = {}
 
-local function get_docs_dirs(opts)
+local function docs_dirs(opts)
 	local paths = vim.api.nvim_get_option_value("runtimepath", { scope = "global" })
 	paths = vim.split(paths, ",")
 	for i, path in pairs(paths) do
@@ -17,26 +17,29 @@ local function get_docs_dirs(opts)
 	return paths
 end
 
-local get_opts = function(opts)
-	local dirs = get_docs_dirs(config.opts)
+local function build_opts(opts)
+	local dirs = docs_dirs(config.opts)
 	local _opts = {
 		prompt_title = "Help Grep",
-		search_dirs = dirs,
 		glob_pattern = "*.txt",
 		disable_coordinates = true,
 		path_display = { "tail" },
-		attach_mappings = mappings.open_help_buf,
 	}
-	return vim.tbl_deep_extend("force", _opts, opts or {})
+	_opts = vim.tbl_deep_extend("force", _opts, opts or {})
+	_opts = vim.tbl_deep_extend("force", _opts, {
+		search_dirs = dirs,
+		attach_mappings = mappings.open_help_buf,
+	})
+	return _opts
 end
 
-M.live_grep = function(opts)
-	local _opts = get_opts(opts)
+function M.live_grep(opts)
+	local _opts = build_opts(opts)
 	builtin.live_grep(_opts)
 end
 
-M.grep_string = function(opts)
-	local _opts = get_opts(opts)
+function M.grep_string(opts)
+	local _opts = build_opts(opts)
 	builtin.live_grep(_opts)
 end
 
