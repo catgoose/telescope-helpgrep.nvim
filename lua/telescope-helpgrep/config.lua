@@ -1,15 +1,14 @@
-local Config = {}
+local M = {}
 
-Config.opts = {}
+M.opts = {}
 
-Config.defaults = {
+M.defaults = {
 	ignore_paths = {},
 }
 
-function Config.setup(ext_config)
-  usr_opts = ext_config or {}
-	Config.opts = vim.tbl_deep_extend("force", Config.defaults, usr_opts)
+function M.setup(config)
+	config = config or {}
+	M.opts = vim.tbl_deep_extend("force", M.defaults, config)
 end
 
-return Config
-
+return M
