@@ -40,7 +40,7 @@ end
 
 function M.grep_string(opts)
 	local _opts = build_opts(opts)
-	builtin.live_grep(_opts)
+	builtin.grep_string(_opts)
 end
 
 return M
