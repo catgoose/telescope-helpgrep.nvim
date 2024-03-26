@@ -38,8 +38,48 @@ Of course you can use the built in `helpgrep`, but I wanted something more
 
 ## Usage
 
+Defaults to `live_grep` picker
+
 ```lua
-Telescope helpgrep
+:Telescope helpgrep
+```
+
+Uses `Telescope live_grep`
+
+```lua
+:Telescope helpgrep live_grep
+```
+
+Uses `Telescope grep_string`
+
+```lua
+:Telescope helpgrep grep_string
+```
+
+### Default options
+
+```lua
+{
+  prompt_title = "Help Grep",
+  glob_pattern = "*.txt",
+  disable_coordinates = true,
+  path_display = { "tail" },
+}
+```
+
+These options can be overridden by passing opts table into `live_grep` or `grep_string`
+`:help telescope.builtin.live_grep` and `:help telescope.builtin.grep_string`
+
+```lua
+require("telescope-helpgrep").live_grep({
+  prompt_title = "Helpy McGrepperson"
+})
+```
+
+```lua
+require("telescope-helpgrep").grep_string({
+  prompt_title = "grep_string"
+})
 ```
 
 ## Setup
