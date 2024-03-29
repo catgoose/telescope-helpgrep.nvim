@@ -55,4 +55,9 @@ function M.grep_string(opts)
 	builtin.grep_string(_opts)
 end
 
+function M.grep(opts)
+	local _opts = build_opts(opts)
+	config.opts.default_grep(_opts)
+end
+
 return M

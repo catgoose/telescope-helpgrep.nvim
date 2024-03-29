@@ -110,7 +110,7 @@ local builtin = require("telescope.builtin")
       ["<CR>"] = actions.select_tab,
     },
   },
-  default_grep = builtin.grep_string,
+  default_grep = builtin.live_grep,
 }
 ```
 

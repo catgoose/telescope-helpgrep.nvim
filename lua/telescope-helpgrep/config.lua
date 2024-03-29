@@ -15,7 +15,7 @@ M.defaults = {
 			["<CR>"] = actions.select_tab,
 		},
 	},
-	default_grep = builtin.grep_string,
+	default_grep = builtin.live_grep,
 }
 
 function M.setup(config)
