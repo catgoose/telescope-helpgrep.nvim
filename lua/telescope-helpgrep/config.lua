@@ -1,4 +1,6 @@
 local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
+
 local M = {}
 
 M.opts = {}
@@ -13,6 +15,7 @@ M.defaults = {
 			["<CR>"] = actions.select_tab,
 		},
 	},
+	default_grep = builtin.grep_string,
 }
 
 function M.setup(config)

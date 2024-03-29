@@ -98,6 +98,7 @@ require("telescope-helpgrep").grep_string({
 
 ```lua
 local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 
 {
   ignore_paths = {},
@@ -109,6 +110,7 @@ local actions = require("telescope.actions")
       ["<CR>"] = actions.select_tab,
     },
   },
+  default_grep = builtin.grep_string,
 }
 ```
 
@@ -118,6 +120,7 @@ In Telescope setup:
 
 ```lua
 local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 
 telescope.setup({
   ...
@@ -135,7 +138,8 @@ telescope.setup({
           ["<CR>"] = actions.select_default,
           ["<C-s>"] = actions.select_horizontal,
         }
-      }
+      },
+      default_grep = builtin.live_grep,
     }
   }
 })

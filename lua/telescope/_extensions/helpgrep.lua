@@ -10,7 +10,7 @@ local config = require("telescope-helpgrep.config")
 return telescope.register_extension({
 	setup = config.setup,
 	exports = {
-		helpgrep = helpgrep.live_grep,
+		helpgrep = config.opts.default_grep or helpgrep.grep_string,
 		live_grep = helpgrep.live_grep,
 		grep_string = helpgrep.grep_string,
 	},
