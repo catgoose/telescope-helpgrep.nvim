@@ -12,18 +12,18 @@ function M.open_help_buf(prompt_bufnr)
 			local win = vim.api.nvim_get_current_win()
 			local buf = vim.api.nvim_get_current_buf()
 			local buf_options = {
-				{ "iskeyword", '!-~,^*,^|,^",192-255' },
-				{ "tabstop", 8 },
 				{ "buflisted", false },
-				{ "modifiable", false },
 				{ "buftype", "help" },
-				{ "foldmethod", "manual" },
+				{ "iskeyword", '!-~,^*,^|,^",192-255' },
+				{ "modifiable", false },
+				{ "tabstop", 8 },
 			}
 			local win_options = {
 				{ "arabic", false },
 				{ "cursorbind", false },
 				{ "diff", false },
 				{ "foldenable", false },
+				{ "foldmethod", "manual" },
 				{ "list", false },
 				{ "number", false },
 				{ "relativenumber", false },
