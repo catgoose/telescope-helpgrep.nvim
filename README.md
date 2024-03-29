@@ -8,6 +8,8 @@
   - [Usage](#usage)
     - [Default picker options](#default-picker-options)
   - [Setup](#setup)
+    - [Defaults](#defaults)
+    - [Example](#example)
   - [Extra](#extra)
   <!--toc:end-->
 
@@ -89,9 +91,34 @@ require("telescope-helpgrep").grep_string({
 
 ## Setup
 
+`ignore_paths` defines which paths will be ignored by helpgrep
+`mappings` defines mappings overrides
+
+### Defaults
+
+```lua
+local actions = require("telescope.actions")
+
+{
+  ignore_paths = {},
+  mappings = {
+    i = {
+      ["<CR>"] = actions.select_tab,
+    },
+    n = {
+      ["<CR>"] = actions.select_tab,
+    },
+  },
+}
+```
+
+### Example
+
 In Telescope setup:
 
 ```lua
+local actions = require("telescope.actions")
+
 telescope.setup({
   ...
   extensions = {
@@ -99,6 +126,16 @@ telescope.setup({
       ignore_paths = {
         vim.fn.stdpath("state") .. "/lazy/readme",
       },
+      mappings = {
+        i = {
+          ["<CR>"] = actions.select_default,
+          ["<C-v>"] = actions.select_vertical,
+        },
+        n = {
+          ["<CR>"] = actions.select_default,
+          ["<C-s>"] = actions.select_horizontal,
+        }
+      }
     }
   }
 })

@@ -1,6 +1,5 @@
 local builtin = require("telescope.builtin")
 local config = require("telescope-helpgrep.config")
-local mappings = require("telescope-helpgrep.mappings")
 
 local M = {}
 
@@ -17,6 +16,19 @@ local function docs_dirs(opts)
 	return paths
 end
 
+local function attach_mappings(_, map)
+	local mappings = config.opts.mappings
+	if not mappings then
+		return false
+	end
+	for mode, mapping in pairs(mappings) do
+		for key, action in pairs(mapping) do
+			map(mode, key, action)
+		end
+	end
+	return true
+end
+
 local function build_opts(opts)
 	local dirs = docs_dirs(config.opts)
 	local _opts = {
@@ -28,7 +40,7 @@ local function build_opts(opts)
 	_opts = vim.tbl_deep_extend("force", _opts, opts or {})
 	_opts = vim.tbl_deep_extend("force", _opts, {
 		search_dirs = dirs,
-		attach_mappings = mappings.open_help_buf,
+		attach_mappings = attach_mappings,
 	})
 	return _opts
 end
