@@ -158,3 +158,4 @@ My other neovim projects
 
 - [neovim config](https://github.com/catgoose/nvim)
 - [do-the-needful.nvim](https://github.com/catgoose/do-the-needful.nvim)
+- [vue-goto-definition](https://github.com/catgoose/vue-goto-definition.nvim)
