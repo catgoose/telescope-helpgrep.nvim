@@ -92,22 +92,13 @@ require("telescope-helpgrep").grep_string({
 ## Setup
 
 `ignore_paths` defines which paths will be ignored by helpgrep
-`mappings` defines mappings overrides
+`default_grep` specifies which telescope built-in to use
 
 ### Defaults
 
 ```lua
-local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")({
   ignore_paths = {},
-  mappings = {
-    i = {
-      ["<CR>"] = actions.select_tab,
-    },
-    n = {
-      ["<CR>"] = actions.select_tab,
-    },
-  },
   default_grep = builtin.live_grep,
 })
 ```
@@ -117,7 +108,6 @@ local builtin = require("telescope.builtin")({
 In Telescope setup:
 
 ```lua
-local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 
 telescope.setup({
@@ -126,16 +116,6 @@ telescope.setup({
     helpgrep = {
       ignore_paths = {
         vim.fn.stdpath("state") .. "/lazy/readme",
-      },
-      mappings = {
-        i = {
-          ["<CR>"] = actions.select_default,
-          ["<C-v>"] = actions.select_vertical,
-        },
-        n = {
-          ["<CR>"] = actions.select_default,
-          ["<C-s>"] = actions.select_horizontal,
-        }
       },
       default_grep = builtin.live_grep,
     }
