@@ -6,6 +6,7 @@ M.opts = {}
 
 M.defaults = {
   ignore_paths = {},
+  mappings = {},
   default_grep = builtin.live_grep,
 }
 

@@ -64,6 +64,24 @@ local function open_with_tag(cmd, tag, row, col)
   vim.api.nvim_win_set_cursor(0, { row, col })
 end
 
+local function replace_select_actions(tag_map)
+  action_set.select:replace(function(prompt_bufnr, type)
+    local selection = action_state.get_selected_entry()
+    if selection ~= nil then
+      local help_file = selection.path
+      local tag = tag_map[help_file]
+      if tag then
+        actions.close(prompt_bufnr)
+        local row = selection.lnum
+        local col = selection.col
+        open_with_tag(type, tag, row, col)
+        return
+      end
+    end
+    action_set.edit(prompt_bufnr, action_state.select_key_to_edit_key(type))
+  end)
+end
+
 local function build_opts(opts)
   local dirs = docs_dirs(config.opts)
   local tag_map = build_tag_map(dirs)
@@ -76,24 +94,18 @@ local function build_opts(opts)
   _opts = vim.tbl_deep_extend("force", _opts, opts or {})
   _opts = vim.tbl_deep_extend("force", _opts, {
     search_dirs = dirs,
-    attach_mappings = function()
-        action_set.select:replace(function(prompt_bufnr, type)
-          local selection = action_state.get_selected_entry()
-          if selection ~= nil then
-            local help_file = selection.path
-            local tag = tag_map[help_file]
-            if tag then
-              actions.close(prompt_bufnr)
-              local row = selection.lnum
-              local col = selection.col
-              open_with_tag(type, tag, row, col)
-              return
-            end
+    attach_mappings = function(_, map)
+      local mappings = config.opts.mappings
+      if mappings then
+        for mode, mapping in pairs(mappings) do
+          for key, action in pairs(mapping) do
+            map(mode, key, action)
           end
-          action_set.edit(prompt_bufnr, action_state.select_key_to_edit_key(type))
-        end)
-        return true
-      end,
+        end
+      end
+      replace_select_actions(tag_map)
+      return true
+    end,
   })
   return _opts
 end
