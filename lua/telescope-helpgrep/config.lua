@@ -1,4 +1,3 @@
-local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 
 local M = {}
@@ -7,14 +6,7 @@ M.opts = {}
 
 M.defaults = {
   ignore_paths = {},
-  mappings = {
-    i = {
-      ["<CR>"] = actions.select_tab,
-    },
-    n = {
-      ["<CR>"] = actions.select_tab,
-    },
-  },
+  mappings = {},
   default_grep = builtin.live_grep,
 }
 

@@ -93,21 +93,14 @@ require("telescope-helpgrep").grep_string({
 
 `ignore_paths` defines which paths will be ignored by helpgrep
 `mappings` defines mappings overrides
+`default_grep` specifies which telescope built-in to use
 
 ### Defaults
 
 ```lua
-local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")({
   ignore_paths = {},
-  mappings = {
-    i = {
-      ["<CR>"] = actions.select_tab,
-    },
-    n = {
-      ["<CR>"] = actions.select_tab,
-    },
-  },
+  mappings = {},
   default_grep = builtin.live_grep,
 })
 ```
@@ -148,7 +141,10 @@ require("telescope").load_extension("helpgrep")
 ```
 
 No paths are ignored by default, but if you use `lazy.nvim` it is recommended
-to add `vim.fn.stdpath("state") .. "/lazy/readme"` to the `ignore_paths` table
+to add `vim.fn.stdpath("state") .. "/lazy/readme"` to the `ignore_paths` table.
+
+Note that `telescope-helpgrep.nvim` will extend the `select_*` actions to use the native
+`help`, `vert help` and `tab help` commands.
 
 ## TODO
 
